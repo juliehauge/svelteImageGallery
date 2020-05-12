@@ -12,8 +12,9 @@
             city: city,
             country: country
         })
+        const btnHeart = document.querySelector("#btnHeart")
+        btnHeart.url.target.src = "./img/fullHeart.png"
     }
-
 
     uploadedImages.onSnapshot(snap => {
         articles = snap.docs
@@ -26,7 +27,7 @@
             <div class="imageContainer">
                 <img src={article.data().url} alt="" class="uploadedImg" />
                 <h3 class="overlay">{article.data().city}, {article.data().country}</h3>
-               <button class="btnFav" on:click={addFav(article.data().url, article.data().city, article.data().country)}><img src="./img/emptyHeart.png" alt="" class="btnHeart"></button>
+               <div class="btnFav" on:click={addFav(article.data().url, article.data().city, article.data().country)}><img src="./img/heart.png" alt="" id="btnHeart"></div>
             </div>
         {:else}
          <div><h3>Loading content...</h3></div>
@@ -44,7 +45,7 @@
     .galleryContainer {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        gap: 0.2rem;
+        gap: 0.9rem;
         justify-content: center;
 
         width: 800px;
@@ -96,7 +97,7 @@
 
     @keyframes zoom {
         to {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
     }
 
@@ -105,14 +106,16 @@
         top: 0;
         left: 0;
         margin: 0.5rem;
+        padding: 0.3rem;
+        border-radius: 50%;
         cursor: pointer;
-        height: 2rem;
-        width: 2rem;
+        height: 1.5rem;
+        width: 1.5rem;
 
-        background-color: #e2f0fa;
+        background-color: #e2f0faa1;
     }
 
-  .btnHeart {
+    #btnHeart {
         width: 100%;
     
     }

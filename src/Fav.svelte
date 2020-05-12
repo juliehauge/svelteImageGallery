@@ -12,17 +12,17 @@
 
 <main>
 
+<div class="galleryContainer">
     {#each addedfavorites as favorite}
         <div class="imageContainer">
             <img src={favorite.data().url} alt="" class="uploadedImg" />
                 <h3 class="overlay">{favorite.data().city}, {favorite.data().country}</h3>
-            <!-- <img src="./img/emptyHeart.png" alt="" class="btnHeart"> -->
+                <div class="containerHeart"><img src="./img/fullHeart.png" alt="" id="btnHeart"></div>
         </div>
     {:else}
         <h3>Loading content...</h3>
     {/each}
-
-
+</div>
 </main>
 
 <style>
@@ -34,7 +34,7 @@
     .galleryContainer {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        gap: 0.2rem;
+        gap: 0.9rem;
         justify-content: center;
 
         width: 800px;
@@ -86,7 +86,7 @@
 
     @keyframes zoom {
         to {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
     }
 
@@ -102,9 +102,22 @@
         background-color: #e2f0fa;
     } */
 
-  /* .btnHeart {
+    .containerHeart {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0.5rem;
+        padding: 0.3rem;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: #e2f0faa1;
+
+    }
+
+   #btnHeart {
         width: 100%;
-    
-    } */
+    } 
 
 </style>
