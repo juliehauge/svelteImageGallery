@@ -32,14 +32,15 @@
         } 
 </script>
 
+<main>
 <fieldset>
-<legend>Last opp et bilde</legend>
+<legend>Upload an image</legend>
     <div class="container">
         <input type="file" bind:files class="inpFile">
-		<button on:click={uploadImage} class="btnBilde">Last opp bildet</button>
+		<button on:click={uploadImage} class="btnBilde">Upload image</button>
 	
-	    <input class="inpBy" bind:value={city} placeholder="By"> 
-		<input class="inpLand" bind:value={country} placeholder="Land">
+	    <input class="inpBy" bind:value={city} placeholder="City"> 
+		<input class="inpLand" bind:value={country} placeholder="Country">
 
         <button class="btnReg" on:click|preventDefault={regInfo}>Upload info</button> 
     </div>
@@ -50,10 +51,11 @@
 		{/if}
 	</div>
 </fieldset>
+</main>
 
 <style>
-
- legend {
+	
+	legend {
 		font-size: 22px;
 		text-align: center;
 
@@ -64,21 +66,25 @@
 	}
 
 	fieldset {
-		width: 800px;
-		margin: 9rem auto;
+		max-width: 650px;
+		margin: auto;
 		padding: 3rem;
 	}
 
 	.container {
 		line-height: 1rem;
 		font-family: sans-serif;
-
+		max-width: 300px;
 		display: flex;
 		flex-direction: column; 
 		float: left;
 
-		margin: 1rem 0 0 0;
-    }
+		margin: auto;
+	}
+	main {
+		padding-top: 10rem;
+		width: 100%;
+	}
 
     .imgContainer {
 		border: 1px solid rgb(93, 150, 150);;
@@ -86,10 +92,18 @@
 		float: right;
 		width: 300px;
 		height: 400px;
+
+		margin: auto;
 	}
 
 	img {
 		width: 300px;
 	}
 
+	@media (max-width: 740px) {
+		  fieldset {
+			display: flex;
+			flex-direction: row;
+          }
+	}
 </style>

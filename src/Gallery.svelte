@@ -12,8 +12,9 @@
             city: city,
             country: country
         })
-        const btnHeart = document.querySelector("#btnHeart")
-        btnHeart.url.target.src = "./img/fullHeart.png"
+
+        const liked = document.getElementById("btnHeart" + url)
+        liked.src = "./img/fullHeart.png"
     }
 
     uploadedImages.onSnapshot(snap => {
@@ -27,7 +28,7 @@
             <div class="imageContainer">
                 <img src={article.data().url} alt="" class="uploadedImg" />
                 <h3 class="overlay">{article.data().city}, {article.data().country}</h3>
-               <div class="btnFav" on:click={addFav(article.data().url, article.data().city, article.data().country)}><img src="./img/heart.png" alt="" id="btnHeart"></div>
+               <div class="btnFav"><img on:click={addFav(article.data().url, article.data().city, article.data().country)} src="./img/heart.png" class="btnHeart" alt="" id='btnHeart{article.data().url}'></div>
             </div>
         {:else}
          <div><h3>Loading content...</h3></div>
@@ -48,7 +49,7 @@
         gap: 0.9rem;
         justify-content: center;
 
-        width: 800px;
+        max-width: 800px;
         margin: 0 auto;
         z-index: 1;
     }
@@ -75,6 +76,7 @@
         background:#1e1f26c9;
         color: #e2f0fa;
         font-weight: 300;
+        font-family: sans-serif;
         
         position:absolute;
         bottom:0;
@@ -115,9 +117,39 @@
         background-color: #e2f0faa1;
     }
 
-    #btnHeart {
+    .btnHeart {
         width: 100%;
     
     }
+
+    @media (max-width: 1600px) {
+		  .galleryContainer {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+          } 
+	}
+
+     @media (max-width: 1240px) {
+		  .galleryContainer {
+            display: grid;
+            grid-template-columns: auto auto auto;
+          }
+	}
+
+    @media (max-width: 945px) {
+		  .galleryContainer {
+            display: grid;
+            grid-template-columns: auto auto;
+          }
+	}
+
+     @media (max-width: 640px) {
+		  .galleryContainer {
+            display: grid;
+            grid-template-columns: auto;
+            justify-content: center;
+            align-items: center;
+          }
+	}
 
 </style>
