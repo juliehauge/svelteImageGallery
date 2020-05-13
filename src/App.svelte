@@ -8,25 +8,31 @@
 
 	export let meny = 1
 
-	const openNav = () => {
-		const showNav = document.getElementById("topnav")
-		showNav.style.display = "grid"
-		showNav.style.gridTemplateColumns = "auto auto auto auto"
-		showNav.style.position = "absolute"
-		showNav.style.top = "5.5rem"
-		showNav.style.backgroundColor = "#1e1f26"
-		showNav.style.width = "100%"
-		showNav.style.height = "5vh"
-		showNav.style.alignItems = "center"
-		showNav.style.justifyContent ="center" 
-	}
+		const openNav = () => {
+			const closeX = document.getElementById("closeX")
+			closeX.style.display = "block"
+		
 
-	const closeNav = () => {
-		const showNav = document.getElementById("topnav")
-		showNav.style.display = "none"
-	}
+			const showNav = document.getElementById("smallnav")
+			showNav.style.display = "grid"
+			/* showNav.style.gridTemplateColumns = "auto auto auto auto auto"
+			showNav.style.position = "absolute"
+			showNav.style.top = "5.5rem"
+			showNav.style.backgroundColor = "#1e1f26"
+			showNav.style.width = "100%"
+			showNav.style.height = "5vh"
+			showNav.style.alignItems = "center"
+			showNav.style.justifyContent ="center"  */
+		}
 	
+		const closeNav = () => {
+			const smallnav = document.getElementById("smallnav")
+			smallnav.style.display = "none"
+
+		}
 </script>
+<div id="meny">
+<div class="imageContainer" ><img src="./img/interface.png" alt="" class="headerImg"></div>
 	<div on:click={openNav} class="menu-button" >
 		<div class="menu__bars">
 			<div class="menu__bar"></div>
@@ -34,9 +40,16 @@
 			<div class="menu__bar"></div>
 		</div>
 	</div> 
-<div id="meny">
-	<div class="imageContainer" ><img src="./img/interface.png" alt="" class="headerImg"></div>
-	<nav id="topnav">
+	<nav id="smallnav" >
+		<a href="/" class="btn active" on:click|preventDefault={() => (meny = 1)}>Gallery</a>
+		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favourites</a>
+		<a href="/" class="btn" on:click|preventDefault={() => (meny = 3)}>Upload</a>
+		<a href="/" class="btn" on:click|preventDefault={() => (meny = 4)}>Map</a>
+		<a href="javascript:void(0)" id="closeX" class="closebtn" on:click={closeNav}>&times;</a>
+	</nav>
+
+
+	<nav id="topnav" >
 		<a href="/" class="btn active" on:click|preventDefault={() => (meny = 1)}>Gallery</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favourites</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 3)}>Upload</a>
@@ -135,17 +148,9 @@
 		background-color: #b3cde0;
 	}
 
-	/* .show {
-		display: grid;
-		grid-template-columns: auto auto auto auto;
-		position: absolute;
-		top: 6rem;
-		background-color: #1e1f26;
-		width:100%;
-		height: 5vh;
-		align-items: center;
-		justify-content: center;
-	} */
+	.closebtn {
+		display: none;
+	}
 
 	
 
@@ -153,9 +158,21 @@
 		.menu-button {
 			display: block;
 		}
+		#smallnav {
+			display: none;
+		
+			grid-template-columns: auto auto auto auto auto;
+			position: absolute;
+			top: 5.5rem;
+			background-color: #1e1f26;
+			width:100%;
+			height: 5vh;
+			align-items: center;
+			justify-content: center;
+
+		}
 		#topnav {
 			display: none;
-
 		}
 	} 
 	@media (min-width: 780px) {
@@ -184,6 +201,9 @@
 			
 			margin: 0 1.5rem;
 			text-decoration: none;
+		}
+		#smallnav {
+			display: none;
 		}
 	} 
 
