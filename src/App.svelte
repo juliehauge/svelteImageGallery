@@ -74,9 +74,9 @@
 		color: #fd8469;
 	}
 
-	#meny a.active,  a:hover {
+	/* #meny a.active,  a:hover {
 		color: #fd8469;
-	} 
+	}  */
 
 	.imageContainer {
 		width: 75px;
@@ -196,9 +196,6 @@
 		}
 	
 	} 
-
-	
- 
 
 
 </style>

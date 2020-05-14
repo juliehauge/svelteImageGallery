@@ -13,7 +13,7 @@
 </script>
 
 <main>
-
+<!-- <h1>Favorites</h1> -->
 <div class="galleryContainer">
     {#each addedfavorites as favorite}
         <div class="imageContainer" id={favorite.id}>
@@ -29,7 +29,7 @@
 
 <style>
     main {
-        padding-top: 10rem;
+        padding-top: 7rem;
         width: 100%;
     }
 

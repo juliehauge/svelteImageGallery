@@ -23,6 +23,7 @@
 </script>
 
 <main>
+    <!-- <h1 class="head">Gallery</h1> -->
     <div class="galleryContainer">
         {#each articles as article}
             <div class="imageContainer">
@@ -39,7 +40,7 @@
 <style>
 
     main {
-        padding-top: 10rem;
+        padding-top: 7rem;
         width: 100%;
     }
 
