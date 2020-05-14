@@ -51,7 +51,7 @@
 
         max-width: 800px;
         margin: 0 auto;
-        z-index: 1;
+     
     }
     .imageContainer {
         width: 300px;

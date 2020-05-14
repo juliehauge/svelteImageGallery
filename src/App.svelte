@@ -11,18 +11,9 @@
 		const openNav = () => {
 			const closeX = document.getElementById("closeX")
 			closeX.style.display = "block"
-		
 
 			const showNav = document.getElementById("smallnav")
 			showNav.style.display = "grid"
-			/* showNav.style.gridTemplateColumns = "auto auto auto auto auto"
-			showNav.style.position = "absolute"
-			showNav.style.top = "5.5rem"
-			showNav.style.backgroundColor = "#1e1f26"
-			showNav.style.width = "100%"
-			showNav.style.height = "5vh"
-			showNav.style.alignItems = "center"
-			showNav.style.justifyContent ="center"  */
 		}
 	
 		const closeNav = () => {
@@ -33,7 +24,7 @@
 </script>
 <div id="meny">
 <div class="imageContainer" ><img src="./img/interface.png" alt="" class="headerImg"></div>
-	<div on:click={openNav} class="menu-button" >
+	<div on:click|preventDefault={openNav} class="menu-button" >
 		<div class="menu__bars">
 			<div class="menu__bar"></div>
 			<div class="menu__bar"></div>
@@ -45,9 +36,8 @@
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favourites</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 3)}>Upload</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 4)}>Map</a>
-		<a href="javascript:void(0)" id="closeX" class="closebtn" on:click={closeNav}>&times;</a>
+		<a href="/" id="closeX" class="closebtn" on:click|preventDefault={closeNav}> <img src="./img/x.png" alt=""id="ximg"></a>
 	</nav>
-
 
 	<nav id="topnav" >
 		<a href="/" class="btn active" on:click|preventDefault={() => (meny = 1)}>Gallery</a>
@@ -74,27 +64,7 @@
 		width: 100%;
 		height: 12vh;
 		position: fixed;
-
-		/* display: grid;
-		grid-template-columns: 1fr auto auto auto;
-	
-		align-items: center;
-		justify-content: right;
-		gap: 3rem;
-		top: 0;
-		z-index: 2; */
-	}
-
-	#topnav a {
-		font-family: sans-serif;
-		font-size: 16px;
-		color: #b3cde0;
-		letter-spacing: 1px;
-		text-transform: uppercase;
-		font-weight: 300;
-		
-		margin: 0 1.5rem;
-		text-decoration: none;
+		z-index: 2;
 	}
 
 	#meny a:link {
@@ -122,13 +92,14 @@
 
  	.menu-button {
 		display: none;
-		position: fixed;
-		top: 20px;
+		position: absolute;
+		top: 3vh;
 		right: 1.5rem;
 		color: black;
 		width: 30px;
 		height: 30px;
 		z-index: 9000;
+		cursor: pointer;
 	}
 
 	.menu-button .menu__bars {
@@ -150,6 +121,14 @@
 
 	.closebtn {
 		display: none;
+		width: 20px;
+		position: absolute;
+		right: 1.7rem;
+	}
+
+	#ximg{
+		width: 100%;
+		
 	}
 
 	
@@ -160,8 +139,8 @@
 		}
 		#smallnav {
 			display: none;
-		
 			grid-template-columns: auto auto auto auto auto;
+			gap: 2rem;
 			position: absolute;
 			top: 5.5rem;
 			background-color: #1e1f26;
@@ -171,12 +150,25 @@
 			justify-content: center;
 
 		}
+		#smallnav a {
+			font-family: sans-serif;
+			font-size: 12px;
+			color: #b3cde0;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			font-weight: 300;
+			
+			text-decoration: none;
+		}
 		#topnav {
 			display: none;
 		}
 	} 
 	@media (min-width: 780px) {
 		.menu-button {
+			display: none;
+		}
+		#smallnav {
 			display: none;
 		}
 		#topnav {
@@ -202,9 +194,7 @@
 			margin: 0 1.5rem;
 			text-decoration: none;
 		}
-		#smallnav {
-			display: none;
-		}
+	
 	} 
 
 	
