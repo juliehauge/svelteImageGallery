@@ -34,12 +34,12 @@
 
 </script>
 
-
 <div id="list-tems" bind:this="{listRef}">
     {#each listItems as listItem, index}
         <div class="list-item" id="list-item-{index}">
-            <img src={listItem.data().url} alt="" />
+            <!-- <img src={listItem.data().url} alt="" /> -->
             <h2>{listItem.data().city}, {listItem.data().country}</h2>
+            <p>{listItem.data().description}</p>
         </div>
     {/each}
 </div>
@@ -50,6 +50,7 @@
     display: grid;
     grid-template-columns: auto;
     width: 100%;
+    height: 100%;
 
   }
 
@@ -58,15 +59,15 @@
     font-size: 10px;
     line-height: 1.5em;
     width: 90%;
-    margin: 0.2rem 0.2rem;
+    margin: 0 0.5rem;
     border-bottom: #ccc dotted 2px;
-    padding-bottom: 10px;
+    padding-bottom: 1rem;
     
   }
 
-  img {
+ /*  img {
     width: 100%;
-  }
+  } */
 
  
 </style>

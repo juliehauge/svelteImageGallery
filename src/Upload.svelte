@@ -3,7 +3,8 @@
 
     let url 
     let city = ""
-    let country = ""
+	let country = ""
+	let description = ""
 
     let files = []
     $: file = files[0]
@@ -24,11 +25,13 @@
                 .add({
                 url: url,
                 city, 
-                country
+				country,
+				description
             })
         url =
         city=""
         country=""
+        description=""
         } 
 </script>
 
@@ -41,6 +44,7 @@
 	
 	    <input class="inpBy" bind:value={city} placeholder="City"> 
 		<input class="inpLand" bind:value={country} placeholder="Country">
+		<input id="info" class="inpDescription" bind:value={description} placeholder="Description">
 
         <button class="btnReg" on:click|preventDefault={regInfo}>Upload info</button> 
     </div>
@@ -86,8 +90,14 @@
 		width: 100%;
 	}
 
+	#info {
+		height: 200px;
+		max-width: 300px;
+		margin: 0 0 0.5rem 0;
+	}
+
     .imgContainer {
-		border: 1px solid rgb(93, 150, 150);;
+		border: 1px solid #1e1f26;
 		display: flex;
 		float: right;
 		width: 300px;

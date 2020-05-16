@@ -35,10 +35,13 @@
 <style>
   .container {
     height: 100vh;
-    padding-top: 10rem;
+    padding-top: 7rem;
+    display: flex;
   }
 
   .pane {
+      display: flex;
+      flex-direction: column;
     
     max-height: 100vh;
   }
