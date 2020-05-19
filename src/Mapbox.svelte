@@ -2,27 +2,34 @@
     import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
     import { activeListItem, activeMapItem } from './stores.js'
     import { onMount, onDestroy } from 'svelte';
-    import List from './List.svelte'
+    import {listItems} from './consts.js'
+    /* import List from './List.svelte'
+    import {listItems} from './List.svelte' */
+ /*    import {db} from "./firestore.js" 
+   const uploadedImages = db.collection("uploadedImages") */
 
-    import {db} from "./firestore.js"
-    const uploadedImages = db.collection("uploadedImages")
 
-   
-    export let listItems = []
+   /*  const coordinates = listItems.data().coordinates
+    const city = listItems.data().city
+    const url = listItems.data().url  */
 
-    const coordinates = uploadedImages.doc().coordinates
-    const city = uploadedImages.doc().city
-    const url = uploadedImages.doc().url
-
+  /*   const listItems = [
+    {
+        city: uploadedImages.doc().city,
+        country: uploadedImages.doc().country,
+        url: uploadedImages.doc().url,
+        coordinates: uploadedImages.doc().coordinates
+    } 
+]*/
 
     let mapRef;
    
 
-    function generateFeature ({city, url, coordinates}, index) {
+    function generateFeature ({coordinates, city, image}, index) {
         return {
             type: 'Feature',
             properties: {
-                description: `<img width="100%" src"${url}"/><b>${city}</b>`,
+                description: `<img width="100%" src"${image}"/><b>${city}</b>`,
                 id: index
             },
             geometry: {
@@ -38,11 +45,14 @@
         mapRef = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/juliehauge/ck5dro2550nxa1ilo9vx8e7ds',
-           coordinates,
-            zoom: 5
+           coordinates: listItems[0].coordinates,
+            zoom: 1
         })
 
+        
+
         mapRef.on('load', function() {
+
             mapRef.addLayer({
                 id: 'places',
                 type: 'symbol',
@@ -53,14 +63,44 @@
                         features: listItems.map(generateFeature)
                     }
                 },
-                /* layout {
+                layout: {
+          'icon-image': 'https://image.flaticon.com/icons/svg/2946/2946154.svg',
+          'icon-size': 2,
+          'icon-allow-overlap': true
+        }
 
-                }*/
             })
 
+            mapRef.on('click', 'places', function({ features }) {
+                const match = features[0]
+                const coordinates = match.geometry.coordinates.slice()
 
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(match.properties.description)
+                    .addTo(mapRef)
+                
+                activeListItem.set(match.properties.id)
+            })
+
+            mapRef.on('mouseenter', 'places', function(){
+                mapRef.getCanvas().style.cursor = 'pointer'
+            })
+            mapRef.on('mouseleave', 'places', function(){
+                mapRef.getCanvas().style.cursor = ''
+            })
         })
     })
+
+    const unsubscriveActiveMapItem = activeMapItem.subscribe(newActiveMapItem => {
+        if (mapRef) {
+            mapRef.flyTo({
+                center: listItems[newActiveMapItem].coordinates
+            })
+        }
+    })
+
+    onDestroy(unsubscriveActiveMapItem)
 </script>
 
 <div id="map"></div>

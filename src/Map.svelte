@@ -1,21 +1,7 @@
 <script>
     import List from './List.svelte'
     import Mapbox from './Mapbox.svelte'
-   /*  import {onMount} from "svelte"
 
-    let cities = []
-
-    onMount ( async () => {
-        const response = await fetch("https://raw.githubusercontent.com/drei01/geojson-world-cities/master/cities.geojson")
-        const json = await response.json();
-        cities = json.results
-    }) */
-
-    /* mapboxgl.accessToken = 'pk.eyJ1IjoianVsaWVoYXVnZSIsImEiOiJjazUzbHVtNDYwOG5uM21xdHc1dW5hOHJvIn0.KujRaoDzyv3ehKHQaUxqAw'
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11'
-    }); */
 </script>
 
 
@@ -35,7 +21,7 @@
 <style>
   .container {
     height: 100vh;
-    padding-top: 7rem;
+    padding-top: 8rem;
     display: flex;
   }
 

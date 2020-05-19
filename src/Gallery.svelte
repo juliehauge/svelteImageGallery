@@ -40,7 +40,7 @@
 <style>
 
     main {
-        padding-top: 7rem;
+        padding-top: 8rem;
         width: 100%;
     }
 

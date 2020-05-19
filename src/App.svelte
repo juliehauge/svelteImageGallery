@@ -33,7 +33,7 @@
 	</div> 
 	<nav id="smallnav" >
 		<a href="/" class="btn active" on:click|preventDefault={() => (meny = 1)}>Gallery</a>
-		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favourites</a>
+		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favorites</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 3)}>Upload</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 4)}>Map</a>
 		<a href="/" id="closeX" class="closebtn" on:click|preventDefault={closeNav}> <img src="./img/x.png" alt=""id="ximg"></a>
@@ -41,7 +41,7 @@
 
 	<nav id="topnav" >
 		<a href="/" class="btn active" on:click|preventDefault={() => (meny = 1)}>Gallery</a>
-		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favourites</a>
+		<a href="/" class="btn" on:click|preventDefault={() => (meny = 2)}>Favorites</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 3)}>Upload</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 4)}>Map</a>
 	</nav>

@@ -1,16 +1,16 @@
 <script>
     import {onMount, onDestroy} from 'svelte'
     import { activeListItem, activeMapItem } from './stores.js'
-    
-    import {db} from "./firestore.js"
+    import {listItems} from './consts.js'
+
+    /* import {db} from "./firestore.js"
     const uploadedImages = db.collection("uploadedImages")
-
-    let listRef
-    let listItems = []
-
-    uploadedImages.onSnapshot(snap => {
+     uploadedImages.onSnapshot(snap => {
         listItems = snap.docs
     })
+    let listItems = []
+ */
+    let listRef
 
     onMount ( async () => {
 
@@ -38,8 +38,8 @@
     {#each listItems as listItem, index}
         <div class="list-item" id="list-item-{index}">
             <!-- <img src={listItem.data().url} alt="" /> -->
-            <h2>{listItem.data().city}, {listItem.data().country}</h2>
-            <p>{listItem.data().description}</p>
+            <h2>{listItem.city}, {listItem.country}</h2>
+        <!--     <p>{listItem.data().description}</p> -->
         </div>
     {/each}
 </div>
