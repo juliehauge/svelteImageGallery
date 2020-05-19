@@ -37,16 +37,16 @@
 
 <main>
 <fieldset>
-<legend>Upload an image</legend>
+<legend><img src="./img/technology.png" alt="" class="camera"></legend>
     <div class="container">
         <input type="file" bind:files class="inpFile">
-		<button on:click={uploadImage} class="btnBilde">Upload image</button>
+		<button on:click={uploadImage} class="btnBilde">Last opp bildet</button>
 	
-	    <input class="inpBy" bind:value={city} placeholder="City"> 
-		<input class="inpLand" bind:value={country} placeholder="Country">
-		<input id="info" class="inpDescription" bind:value={description} placeholder="Description">
+	    <input class="inpBy" bind:value={city} placeholder="By"> 
+		<input class="inpLand" bind:value={country} placeholder="Land/stat">
+		<input id="info" class="inpDescription" bind:value={description} placeholder="Informasjon">
 
-        <button class="btnReg" on:click|preventDefault={regInfo}>Upload info</button> 
+        <button class="btnReg" on:click|preventDefault={regInfo}>Registrer</button> 
     </div>
 
 	<div class="imgContainer">
@@ -67,6 +67,10 @@
 		font-weight: 300;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
+	}
+
+	.camera {
+		width: 12%;
 	}
 
 	fieldset {

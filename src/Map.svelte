@@ -21,7 +21,7 @@
 <style>
   .container {
     height: 100vh;
-    padding-top: 8rem;
+    padding: 6rem 2.5rem 0 2.5rem;
     display: flex;
   }
 
@@ -37,6 +37,7 @@
     grid-template-columns: auto;
     align-items: center;
     width: 35%;
+    height: 85%;
     justify-content: center;
     overflow: scroll;
     object-fit: contain;
@@ -45,5 +46,11 @@
   .right {
     justify-content: space-between;
     width: 65%;
+  }
+
+  @media (max-width: 780px) {
+      .container {
+          padding-top: 8rem;
+      }
   }
 </style>

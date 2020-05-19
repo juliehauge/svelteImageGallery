@@ -32,7 +32,7 @@
                <div class="btnFav"><img on:click={addFav(article.data().url, article.data().city, article.data().country)} src="./img/heart.png" class="btnHeart" alt="" id='btnHeart{article.data().url}'></div>
             </div>
         {:else}
-         <div><h3>Loading content...</h3></div>
+         <div class="laster"><h3>Laster innhold...</h3></div>
         {/each}
     </div>
 </main>
@@ -42,6 +42,12 @@
     main {
         padding-top: 8rem;
         width: 100%;
+    }
+
+    .laster {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: #1e1f26c9;
     }
 
     .galleryContainer {

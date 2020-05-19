@@ -19,10 +19,10 @@
         <div class="imageContainer" id={favorite.id}>
             <img src={favorite.data().url} alt="" class="uploadedImg" />
                 <h3 class="overlay">{favorite.data().city}, {favorite.data().country}</h3>
-                <div class="containerHeart"><img on:click={() => favorites.doc(favorite.id).delete() } src="./img/fullHeart.png" alt="" class="btnHeart"></div>
+                <div class="containerDelete"><img on:click={() => favorites.doc(favorite.id).delete() } src="./img/xFav.png" alt="" class="btnDelete"></div>
         </div>
     {:else}
-        <h3>Loading content...</h3>
+        <h3 class="laster">Laster innhold...</h3>
     {/each}
 </div>
 </main>
@@ -31,6 +31,12 @@
     main {
         padding-top: 8rem;
         width: 100%;
+    }
+
+    .laster {
+        font-family: sans-serif;
+        font-size: 14px;
+        color: #1e1f26c9;
     }
 
     .galleryContainer {
@@ -90,10 +96,10 @@
         }
     }
 
-    .containerHeart {
+    .containerDelete {
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
         margin: 0.5rem;
         padding: 0.3rem;
         border-radius: 50%;
@@ -104,7 +110,7 @@
 
     }
 
-    .btnHeart {
+    .btnDelete {
         width: 100%;
     } 
     

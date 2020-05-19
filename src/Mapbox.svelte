@@ -3,26 +3,9 @@
     import { activeListItem, activeMapItem } from './stores.js'
     import { onMount, onDestroy } from 'svelte';
     import {listItems} from './consts.js'
-    /* import List from './List.svelte'
-    import {listItems} from './List.svelte' */
- /*    import {db} from "./firestore.js" 
-   const uploadedImages = db.collection("uploadedImages") */
 
 
-   /*  const coordinates = listItems.data().coordinates
-    const city = listItems.data().city
-    const url = listItems.data().url  */
-
-  /*   const listItems = [
-    {
-        city: uploadedImages.doc().city,
-        country: uploadedImages.doc().country,
-        url: uploadedImages.doc().url,
-        coordinates: uploadedImages.doc().coordinates
-    } 
-]*/
-
-    let mapRef;
+   let mapRef;
    
 
     function generateFeature ({coordinates, city, image}, index) {
@@ -45,7 +28,7 @@
         mapRef = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/juliehauge/ck5dro2550nxa1ilo9vx8e7ds',
-           coordinates: listItems[0].coordinates,
+            coordinates: listItems[0].coordinates,
             zoom: 1
         })
 
@@ -53,6 +36,9 @@
 
         mapRef.on('load', function() {
 
+ 
+// create the marker
+        
             mapRef.addLayer({
                 id: 'places',
                 type: 'symbol',
@@ -64,21 +50,29 @@
                     }
                 },
                 layout: {
-          'icon-image': 'https://image.flaticon.com/icons/svg/2946/2946154.svg',
-          'icon-size': 2,
+          'icon-image': 'attraction-15',
+          'icon-size': 1,
           'icon-allow-overlap': true
         }
 
             })
 
+             
+
             mapRef.on('click', 'places', function({ features }) {
                 const match = features[0]
                 const coordinates = match.geometry.coordinates.slice()
-
-                new mapboxgl.Popup()
-                    .setLngLat(coordinates)
+    
+        /*const el = document.createElement('div');
+            el.id = 'marker';
+                 new mapboxgl.Marker(el)
+                .setLngLat(match.coordinates)
+                .setPopup(match.properties.description) // sets a popup on this marker
+                .addTo(mapRef);   */ 
+               new mapboxgl.Popup()
+                    .setLngLat(match.coordinates)
                     .setHTML(match.properties.description)
-                    .addTo(mapRef)
+                    .addTo(mapRef) 
                 
                 activeListItem.set(match.properties.id)
             })
@@ -101,18 +95,22 @@
     })
 
     onDestroy(unsubscriveActiveMapItem)
+
+    
+
 </script>
 
 <div id="map"></div>
 
 
 <style>
-     #map {
+    #map {
     width: 100%;
     height: 100%;
-  }
+    }
 
-  #map:before {
+
+    #map:before {
     box-shadow: 20px 0 10px -10px rgba(0, 0, 0, 0.15) inset;
     content: '';
     height: 100%;
@@ -120,6 +118,6 @@
     position: absolute;
     width: 20px;
     z-index: 1000;
-  }
+    }
 
 </style>
