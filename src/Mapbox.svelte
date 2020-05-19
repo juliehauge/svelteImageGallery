@@ -63,12 +63,6 @@
                 const match = features[0]
                 const coordinates = match.geometry.coordinates.slice()
     
-        /*const el = document.createElement('div');
-            el.id = 'marker';
-                 new mapboxgl.Marker(el)
-                .setLngLat(match.coordinates)
-                .setPopup(match.properties.description) // sets a popup on this marker
-                .addTo(mapRef);   */ 
                new mapboxgl.Popup()
                     .setLngLat(match.coordinates)
                     .setHTML(match.properties.description)
