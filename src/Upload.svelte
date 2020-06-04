@@ -49,11 +49,11 @@
 <legend><img src="./img/technology.png" alt="" class="camera"></legend>
     <div class="container">
 		{#if url}
-		<div class="valgtFil">Bildet du har valgt er: {file.name}</div>
+		<div class="chosenFile"><b>Bildet du har valgt er</b>: {file.name}</div>
 	
-	    <input class="inpBy" bind:value={city} placeholder="By"> 
-		<input class="inpLand" bind:value={country} placeholder="Land/stat">
-		<input id="info" class="inpDescription" bind:value={description} placeholder="Informasjon">
+	    <input class="inpBy" bind:value={city} placeholder="By eller sted"> 
+		<input class="inpLand" bind:value={country} placeholder="Land eller stat">
+		<input id="info" class="inpDescription" bind:value={description} placeholder="Beskrivelse">
 		<div class="latLng">
 		<input class="inpLat" bind:value={lat} placeholder="Breddegrad">
 		<input class="inpLng" bind:value={lng} placeholder="Lengdegrad">
@@ -63,13 +63,13 @@
         <button class="btnReg" on:click|preventDefault={regInfo}>Registrer</button> 
 		{:else}
 		<input type="file" bind:files class="inpFile">
-		<button on:click={uploadImage} class="btnBilde">Last opp bildet</button>
+		<button on:click={uploadImage} class="btnImage">Last opp bildet</button>
 		{/if}
     </div>
 
 	<div class="imgContainer">
 		{#if url}
-			<img src={url} alt="">
+			<img src={url} alt="" class="imgUpload">
 		{/if}
 	</div>
 </fieldset>
@@ -90,7 +90,7 @@
 		max-width: 650px;
 		margin: auto;
 		padding: 3rem;
-		background-color: #e2f0fac0;
+		background-color: #e7f1f8c0;
 	}
 
 	.container {
@@ -109,42 +109,57 @@
 	}
 
 	#info {
-		height: 200px;
+		height: 150px;
 		max-width: 300px;
 		margin: 0 0 0.5rem 0;
 	}
 	.latLng{
 		display: grid;
 		grid-template-columns: auto auto;
-		gap: 0.2rem;
+		gap: 0.5rem;
 	}
 	.inpLat {
-		max-width: 140px;
+		max-width: 146px;
 	}
 	.inpLng {
-		max-width: 140px;
+		max-width: 146px;
 	}
 	.inpBy{
 		margin-top: 1rem;
 	}
+	.inpFile{
+		margin-top: 0.5rem;
+	}
+	input#file-upload-button{
+		cursor: pointer;
+	}
 
-	.valgtFil {
+	.chosenFile {
+		margin-top: 0.5rem;
 		padding: 0.5rem;
 		border-bottom: #1e1f26 solid 1px;
+		color: #1e1f26;
+		line-height: 1.5rem;
 	}
 
     .imgContainer {
 		border: 1px solid #1e1f26;
 		display: flex;
+		flex-direction: column;
 		float: right;
 		width: 300px;
-		height: 400px;
-
-		margin: auto;
+		height:400px;
+		margin: 0.5rem auto;
 	}
 
-	img {
-		width: 300px;
+	.imgUpload {
+		width: 100%;
+		height: 100%;
+        object-fit: cover;
+	}
+
+	.btnImage, .btnReg {
+		cursor: pointer;
 	}
 
 	@media (max-width: 740px) {

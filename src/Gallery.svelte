@@ -37,7 +37,7 @@
                 </div>
             </div>
         {:else}
-            <div class="laster"><h3>Laster innhold...</h3></div>
+            <div class="loading"><h3>Laster innhold...</h3></div>
         {/each}
     </div>
 </main>
@@ -49,7 +49,7 @@
         width: 100%;
     }
 
-    .laster {
+    .loading {
         font-family: sans-serif;
         font-size: 14px;
         color: #1e1f26c9;
@@ -77,8 +77,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        
-        
     }
 
     .overlay {
