@@ -6,33 +6,38 @@
     const favorites = db.collection("favorites")
 
 
-    const addFav = (url, city, country) => {
+    const addFav = (url, city, country, id) => {
         favorites.add({
             url: url,
             city: city,
             country: country
         })
-
-        const liked = document.getElementById("btnHeart" + url)
-        liked.src = "./img/fullHeart.png"
+        uploadedImages.doc(id).update({
+            isLiked: true
+        })
     }
-
+   
     uploadedImages.onSnapshot(snap => {
         articles = snap.docs
     })
 </script>
 
 <main>
-    <!-- <h1 class="head">Gallery</h1> -->
     <div class="galleryContainer">
         {#each articles as article}
             <div class="imageContainer">
                 <img src={article.data().url} alt="" class="uploadedImg" />
                 <h3 class="overlay">{article.data().city}, {article.data().country}</h3>
-               <div class="btnFav"><img on:click={addFav(article.data().url, article.data().city, article.data().country)} src="./img/heart.png" class="btnHeart" alt="" id='btnHeart{article.data().url}'></div>
+                <div class="btnFav">
+                    {#if (article.data().isLiked == true)}
+                        <img src="./img/fullHeart.png" alt="" class="btnHeart">
+                    {:else}
+                        <img on:click={addFav(article.data().url, article.data().city, article.data().country, article.id)} src="./img/heart.png" class="btnHeart" alt="" id='btnHeart{article.data().url}'>
+                    {/if}
+                </div>
             </div>
         {:else}
-         <div class="laster"><h3>Laster innhold...</h3></div>
+            <div class="laster"><h3>Laster innhold...</h3></div>
         {/each}
     </div>
 </main>
@@ -62,13 +67,17 @@
     }
     .imageContainer {
         width: 300px;
+        height: 100%;
         margin: 0; 
         position:relative;
         display:inline-block;
     }
 
     .uploadedImg {
-        width: 300px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        
         
     }
 

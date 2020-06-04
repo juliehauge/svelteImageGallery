@@ -6,6 +6,7 @@
 	import Map from "./Map.svelte"
 
 
+
 	export let meny = 1
 
 		const openNav = () => {
@@ -21,7 +22,9 @@
 			smallnav.style.display = "none"
 
 		}
+
 </script>
+
 <div id="meny">
 <div class="imageContainer" ><img src="./img/interface.png" alt="" class="headerImg"></div>
 	<div on:click|preventDefault={openNav} class="menu-button" >
@@ -45,18 +48,22 @@
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 3)}>Registrer</a>
 		<a href="/" class="btn" on:click|preventDefault={() => (meny = 4)}>Kart</a>
 	</nav>
+	
 </div>
 
 
-{#if meny === 1}
-	<Gallery />
-{:else if meny === 2}
-	<Fav />
-{:else if meny === 3}
-	<Upload />
-{:else if meny === 4}
-	<Map />
-{/if}
+
+	{#if meny === 1}
+		<Gallery />
+	{:else if meny === 2}
+		<Fav />
+	{:else if meny === 3}
+		<Upload />
+	{:else if meny === 4}
+		<Map />
+	{/if}
+ 
+
 
 <style>
 	#meny {
@@ -68,7 +75,7 @@
 	}
 
 	#meny a:link {
-		color: #b3cde0;
+		color: white;
 	}
 	#meny a:hover {
 		color: #fd8469;
@@ -86,7 +93,6 @@
 
 	.headerImg {
 		width: 100%;
-	
 		padding-left: 1rem;
 	}
 
@@ -153,7 +159,7 @@
 		#smallnav a {
 			font-family: sans-serif;
 			font-size: 12px;
-			color: #b3cde0;
+			color: white;
 			letter-spacing: 1px;
 			text-transform: uppercase;
 			font-weight: 300;
@@ -186,7 +192,7 @@
 			#topnav a {
 			font-family: sans-serif;
 			font-size: 16px;
-			color: #b3cde0;
+			color: white;
 			letter-spacing: 1px;
 			text-transform: uppercase;
 			font-weight: 300;

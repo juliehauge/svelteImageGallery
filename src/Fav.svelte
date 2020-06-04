@@ -1,26 +1,34 @@
 <script>
     import {db, storage} from "./firestore.js"
     
-    const favorites = db.collection("favorites")
+    const uploadedImages = db.collection("uploadedImages")
 
-    let addedfavorites = []
-    let favorite
-  
-    favorites.onSnapshot( snap => {
-        addedfavorites = snap.docs
+    const deleteFav = (id) => {
+        uploadedImages.doc(id).update({
+                isLiked: false
+            })
+    }
+
+    let articles = []
+
+    uploadedImages.onSnapshot(snap => {
+        articles = snap.docs
     })
 
 </script>
 
 <main>
-<!-- <h1>Favorites</h1> -->
+
 <div class="galleryContainer">
-    {#each addedfavorites as favorite}
-        <div class="imageContainer" id={favorite.id}>
-            <img src={favorite.data().url} alt="" class="uploadedImg" />
-                <h3 class="overlay">{favorite.data().city}, {favorite.data().country}</h3>
-                <div class="containerDelete"><img on:click={() => favorites.doc(favorite.id).delete() } src="./img/xFav.png" alt="" class="btnDelete"></div>
+
+    {#each articles as article}
+        {#if (article.data().isLiked == true)}
+        <div class="imageContainer" id={article.id}>
+            <img src={article.data().url} alt="" class="uploadedImg" />
+                <h3 class="overlay">{article.data().city}, {article.data().country}</h3>
+                <div class="containerDelete" on:click={deleteFav(article.id)}><img  src="./img/xFav.png" alt="" class="btnDelete"></div>
         </div>
+        {/if}
     {:else}
         <h3 class="laster">Laster innhold...</h3>
     {/each}
@@ -51,14 +59,16 @@
     }
     .imageContainer {
         width: 300px;
+        height: 100%;
         margin: 0; 
         position:relative;
         display:inline-block;
     }
 
     .uploadedImg {
-        width: 300px;
-        
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .overlay {
@@ -101,11 +111,11 @@
         top: 0;
         right: 0;
         margin: 0.5rem;
-        padding: 0.3rem;
+        padding: 0.5rem;
         border-radius: 50%;
         cursor: pointer;
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1rem;
+        height: 1rem;
         background-color: #e2f0faa1;
 
     }

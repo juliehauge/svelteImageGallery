@@ -12,7 +12,6 @@
         <div class="pane right">
             <Mapbox />
         </div>
-   
    </div>
 
 
@@ -20,16 +19,15 @@
 
 <style>
   .container {
-    height: 100vh;
-    padding: 6rem 2.5rem 0 2.5rem;
+    max-height: 85vh;
+    padding: 7rem 2.5rem 0 2.5rem;
     display: flex;
   }
 
   .pane {
       display: flex;
       flex-direction: column;
-    
-    max-height: 100vh;
+      max-height: 85vh;
   }
 
   .left {

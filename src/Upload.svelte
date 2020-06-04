@@ -5,6 +5,8 @@
     let city = ""
 	let country = ""
 	let description = ""
+	let lng 
+	let lat
 
     let files = []
     $: file = files[0]
@@ -23,15 +25,22 @@
             const uploadedImages = db.collection("uploadedImages")
             uploadedImages
                 .add({
-                url: url,
+				url: url,
+				lng,
+				lat,
                 city, 
 				country,
-				description
+				description,
+				isLiked: false
+				
             })
-        url =
+		url =
+		lng =
+		lat =
         city=""
         country=""
-        description=""
+		description=""
+		
         } 
 </script>
 
@@ -39,14 +48,23 @@
 <fieldset>
 <legend><img src="./img/technology.png" alt="" class="camera"></legend>
     <div class="container">
-        <input type="file" bind:files class="inpFile">
-		<button on:click={uploadImage} class="btnBilde">Last opp bildet</button>
+		{#if url}
+		<div class="valgtFil">Bildet du har valgt er: {file.name}</div>
 	
 	    <input class="inpBy" bind:value={city} placeholder="By"> 
 		<input class="inpLand" bind:value={country} placeholder="Land/stat">
 		<input id="info" class="inpDescription" bind:value={description} placeholder="Informasjon">
+		<div class="latLng">
+		<input class="inpLat" bind:value={lat} placeholder="Breddegrad">
+		<input class="inpLng" bind:value={lng} placeholder="Lengdegrad">
+		</div>
+		
 
         <button class="btnReg" on:click|preventDefault={regInfo}>Registrer</button> 
+		{:else}
+		<input type="file" bind:files class="inpFile">
+		<button on:click={uploadImage} class="btnBilde">Last opp bildet</button>
+		{/if}
     </div>
 
 	<div class="imgContainer">
@@ -60,23 +78,19 @@
 <style>
 	
 	legend {
-		font-size: 22px;
 		text-align: center;
-
-		font-family: sans-serif;
-		font-weight: 300;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
+		width: 60px;
 	}
 
 	.camera {
-		width: 12%;
+		width: 100%;
 	}
 
 	fieldset {
 		max-width: 650px;
 		margin: auto;
 		padding: 3rem;
+		background-color: #e2f0fac0;
 	}
 
 	.container {
@@ -98,6 +112,25 @@
 		height: 200px;
 		max-width: 300px;
 		margin: 0 0 0.5rem 0;
+	}
+	.latLng{
+		display: grid;
+		grid-template-columns: auto auto;
+		gap: 0.2rem;
+	}
+	.inpLat {
+		max-width: 140px;
+	}
+	.inpLng {
+		max-width: 140px;
+	}
+	.inpBy{
+		margin-top: 1rem;
+	}
+
+	.valgtFil {
+		padding: 0.5rem;
+		border-bottom: #1e1f26 solid 1px;
 	}
 
     .imgContainer {
